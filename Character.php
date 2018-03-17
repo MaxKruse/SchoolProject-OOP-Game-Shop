@@ -6,6 +6,7 @@ class Character{
     private $ItemTypes, $Stats;
     public $gold, $silver, $copper;
     public $Items;
+    private $equipped;
     
 
     function __construct(){
@@ -14,6 +15,14 @@ class Character{
         $this->copper = rand(1, 75);
 
         $this->newStats();
+
+        $this->equipped = array(
+            "Weapon" => NULL, 
+            "Helmet" => NULL, 
+            "Chest" => NULL, 
+            "Pants" => NULL, 
+            "Boots" => NULL
+        );
 
         $this->ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
 
@@ -46,15 +55,15 @@ class Character{
         }
     }
 
-    public function equipItem($item){
-        
+    public function equipItem(Item $item){
+        $this->equipped[$item->myType] = $item;
     }
 
-    public function buyItem($item){
+    public function buyItem(Item $item){
 
     }
 
-    public function sellItem($item){
+    public function sellItem(Item $item){
 
     }
 }

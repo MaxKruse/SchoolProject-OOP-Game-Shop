@@ -2,6 +2,7 @@
 
 class Item{
     private $ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
+    public $myType;
     
     private $Stats = array(
         "Name" => "",
@@ -23,14 +24,12 @@ class Item{
 
     function __construct($type){
 
-        $temp = "";
-
         for($i = 0; $i < count($this->ItemTypes); $i++){
             if($this->ItemTypes[$i] == $type)
-                $temp = $type;
+                $this->myType = $type;
         }
 
-        if($temp == "")
+        if($this->myType == "")
             exit("Error on creating Item");
 
         switch($type){
