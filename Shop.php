@@ -1,41 +1,90 @@
 <?php
 
-class Shop{
+class Shop {
 
-    private $ItemTypes;
+    private $ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
 
-    private $Items;
+    private $Items = array();
 
     function __construct(){
-        $this->ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
+        $this->generateItems();
     }
 
     function listItems(){
+        
+        //var_dump($this->Items);
+
+        print "\n\n\t\tAvailable items\n\n";
+
         for($i = 0; $i < count($this->Items); $i++){
-            print $this->Items[$i]["Name"] . "\n";
-            if($this->Items[$i]["HP"] > 0)
-            print $this->Items[$i]["HP"] . "\n";
-            if($this->Items[$i]["Mana"] > 0)
-            print $this->Items[$i]["Mana"] . "\n";
-            if($this->Items[$i]["Attack"] > 0)
-            print $this->Items[$i]["Attack"] . "\n";
-            if($this->Items[$i]["Defense"] > 0)
-            print $this->Items[$i]["Defense"] . "\n";
+            $dis = $i + 1; 
+            print "Nr " . $dis . ": ";
+            print $this->Items[$i]->Stats["Name"] . "\n";
+            if($this->Items[$i]->Stats["HP"] > 0)
+            print "HP: " . $this->Items[$i]->Stats["HP"] . "\n";
+            if($this->Items[$i]->Stats["Mana"] > 0)
+            print "Mana: " . $this->Items[$i]->Stats["Mana"] . "\n";
+            if($this->Items[$i]->Stats["Attack"] > 0)
+            print "Attack: " . $this->Items[$i]->Stats["Attack"] . "\n";
+            if($this->Items[$i]->Stats["Defense"] > 0)
+            print "Defense:" . $this->Items[$i]->Stats["Defense"] . "\n";
+
+            print "\n";
         }
     }
 
-    function buyItem($item){
+    function buyItem(Item $item){
         
     }
         
-    function sellItem($item){
+    function sellItem(Item $item){
         
     }
 
-    function generateItems(){
-        $this->Items = array(
-            //TODO
-        );
+    function generateItems($total = 12){
+        
+
+
+        $amountWeapon = rand(2,$total / 4);
+        $amountHelmet = rand(2,$total / 3);
+        $amountChest = rand(2,$total / 4);
+        $amountPants = rand(2,$total / 4);
+        $amountBoots = $total - $amountWeapon -$amountChest - $amountHelmet - $amountPants;
+        
+        $tempWeapon = array();
+
+        $tempHelmet = array();
+
+        $tempChest = array();
+
+        $tempPants = array();
+
+        $tempBoots = array();
+
+        for($i = 0; $i < $amountWeapon; $i++){
+            $tempWeapon[$i] = new Item("Weapon");
+        }
+        for($i = 0; $i < $amountHelmet; $i++){
+            $tempHelmet[$i] = new Item("Helmet");
+        }
+        for($i = 0; $i < $amountChest; $i++){
+            $tempChest[$i] = new Item("Chest");
+        }
+        for($i = 0; $i < $amountPants; $i++){
+            $tempPants[$i] = new Item("Pants");
+        }
+        for($i = 0; $i < $amountBoots; $i++){
+            $tempBoots[$i] = new Item("Boots");
+        }
+
+        //var_dump($tempWeapon);
+        //var_dump($tempHelmet);
+        //var_dump($tempChest);
+        //var_dump($tempPants);
+        //var_dump($tempBoots);
+
+
+        $this->Items = array_Merge($tempBoots, $tempChest, $tempHelmet, $tempPants, $tempWeapon);
     }
 
 }

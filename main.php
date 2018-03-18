@@ -5,5 +5,8 @@ require_once("Item.php");
 
 
 $character = new Character();
+$shop = new Shop();
+
+$shop->listItems();
 
 ?>

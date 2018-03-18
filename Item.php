@@ -1,10 +1,10 @@
 <?php
 
-class Item{
+class Item {
     private $ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
     public $myType;
     
-    private $Stats = array(
+    public $Stats = array(
         "Name" => "",
         "HP" => 0,
         "Mana" => 0,
@@ -34,28 +34,28 @@ class Item{
 
         switch($type){
             case "Weapon":
-            $this->Stats["Attack"] = 10;
-            $this->Stats["HP"] = 10;
+            $this->Stats["Attack"] = 10 + rand(5,10);
+            $this->Stats["HP"] = 10 + rand(5,10);
             $this->Stats["Name"] = "Mighty " . $type;
                 break;
             case "Helmet":
-            $this->Stats["HP"] = 20;
-            $this->Stats["Mana"] = 20;
+            $this->Stats["HP"] = 10 + rand(5,10);
+            $this->Stats["Mana"] = 10 + rand(5,10);
             $this->Stats["Name"] = "Strong " . $type;
                 break;
             case "Chest":
-            $this->Stats["HP"] = 40;
-            $this->Stats["Defense"] = 35;
+            $this->Stats["HP"] = 20 + rand(5,10);
+            $this->Stats["Defense"] = 15 + rand(5,10);
             $this->Stats["Name"] = "Sturdy " . $type;
                 break;
             case "Pants":
-            $this->Stats["HP"] = 15;
-            $this->Stats["Defense"] = 5;
+            $this->Stats["HP"] = 15 + rand(5,10);
+            $this->Stats["Defense"] = 5 + rand(5,10);
             $this->Stats["Name"] = "Basic " . $type;
                 break;
             case "Boots":
-            $this->Stats["HP"] = 10;
-            $this->Stats["Defense"] = 5;
+            $this->Stats["HP"] = 10 + rand(5,10);
+            $this->Stats["Defense"] = 5 + rand(5,10);
             $this->Stats["Name"] = "Swift " . $type;
                 break;
         
@@ -69,22 +69,30 @@ class Item{
     function getBuyValue(){
         $price = 0;
 
-        for($i = 0; $i < count($this->Items); $i++){
-            if($this->Items[$i]["HP"] > 0)
-                $price += $this->Items[$i]["HP"] * 30;
-            if($this->Items[$i]["Mana"] > 0)
-            $price += $this->Items[$i]["Mana"] * 30;
-            if($this->Items[$i]["Attack"] > 0)
-            $price += $this->Items[$i]["AttackHP"] * 30;
-            if($this->Items[$i]["Defense"] > 0)
-            $price += $this->Items[$i]["Defense"] * 30;
-        }
+        if($this->Stats["HP"] > 0)
+            $price += $this->Stats["HP"] * 30;
+        if($this->Stats["Mana"] > 0)
+        $price += $this->Stats["Mana"] * 30;
+        if($this->Stats["Attack"] > 0)
+        $price += $this->Stats["Attack"] * 30;
+        if($this->Stats["Defense"] > 0)
+        $price += $this->Stats["Defense"] * 30;
+    
         return $price;
     }
 
     function getSellValue(){
         $price = 0;
-        
+
+        if($this->Stats["HP"] > 0)
+            $price += $this->Stats["HP"] * 20;
+        if($this->Stats["Mana"] > 0)
+        $price += $this->Stats["Mana"] * 15;
+        if($this->Stats["Attack"] > 0)
+        $price += $this->Stats["Attack"] * 20;
+        if($this->Stats["Defense"] > 0)
+        $price += $this->Stats["Defense"] * 35;
+    
         return $price;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 require_once("Item.php");
 
-class Character{
+class Character {
 
     private $ItemTypes, $Stats;
     public $gold, $silver, $copper;
@@ -17,18 +17,18 @@ class Character{
         $this->newStats();
 
         $this->equipped = array(
-            "Weapon" => NULL, 
-            "Helmet" => NULL, 
-            "Chest" => NULL, 
-            "Pants" => NULL, 
-            "Boots" => NULL
+            "Weapon" => null, 
+            "Helmet" => null, 
+            "Chest" => null, 
+            "Pants" => null, 
+            "Boots" => null
         );
 
         $this->ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
 
         $this->newItems();
 
-        $this->debug();
+        //$this->debug();
     }
 
     function debug(){
