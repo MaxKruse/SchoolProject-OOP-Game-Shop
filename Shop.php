@@ -1,4 +1,7 @@
 <?php
+require_once("Character.php");
+require_once("Shop.php");
+require_once("Item.php");
 
 class Shop {
 
@@ -11,8 +14,6 @@ class Shop {
     }
 
     function listItems(){
-        
-        //var_dump($this->Items);
 
         print "\n\n\t\tAvailable items\n\n";
 
@@ -41,9 +42,45 @@ class Shop {
         
     }
 
-    function generateItems($total = 12){
+    function convertGSCtoCurrency($arr){
         
+        $gold = $arr["Gold"];
 
+        $silver = $arr["Silver"];
+
+        $copper = $arr["Copper"];
+
+        $money = $gold * 100 * 100;
+        $money += $silver * 100;
+        $money += $copper;
+
+        return $money;
+    }
+
+    function convertCurrencyToGSC($money){
+        
+        $arr = array();
+
+        $Gold = floor($money / 10000);
+
+        $money = $money % 10000;
+
+        $Silver = floor($money / 100);
+
+        $money = $money % 100;
+
+        $Copper = floor($money);
+
+        $arr["Gold"] = $Gold;
+        $arr["Silver"] = $Silver;
+        $arr["Copper"] = $Copper;
+
+        var_dump($arr);
+
+        return $arr;
+    }
+
+    function generateItems($total = 12){
 
         $amountWeapon = rand(2,$total / 4);
         $amountHelmet = rand(2,$total / 3);
@@ -76,13 +113,6 @@ class Shop {
         for($i = 0; $i < $amountBoots; $i++){
             $tempBoots[$i] = new Item("Boots");
         }
-
-        //var_dump($tempWeapon);
-        //var_dump($tempHelmet);
-        //var_dump($tempChest);
-        //var_dump($tempPants);
-        //var_dump($tempBoots);
-
 
         $this->Items = array_Merge($tempBoots, $tempChest, $tempHelmet, $tempPants, $tempWeapon);
     }

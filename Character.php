@@ -1,22 +1,24 @@
 <?php
+require_once("Character.php");
+require_once("Shop.php");
 require_once("Item.php");
 
 class Character {
 
     private $ItemTypes, $Stats;
-    public $gold, $silver, $copper;
+    public $Currency = array();
     public $Items;
-    private $equipped;
+    private $Equipped;
     
 
     function __construct(){
-        $this->gold = rand(5, 10);
-        $this->silver = rand(25, 50);
-        $this->copper = rand(1, 75);
+        $this->Currency["gold"] = rand(5, 10);
+        $this->Currency["silver"] = rand(25, 50);
+        $this->Currency["copper"] = rand(1, 75);
 
         $this->newStats();
 
-        $this->equipped = array(
+        $this->Equipped = array(
             "Weapon" => null, 
             "Helmet" => null, 
             "Chest" => null, 
@@ -56,7 +58,7 @@ class Character {
     }
 
     public function equipItem(Item $item){
-        $this->equipped[$item->myType] = $item;
+        $this->Equipped[$item->myType] = $item;
     }
 
     public function buyItem(Item $item){

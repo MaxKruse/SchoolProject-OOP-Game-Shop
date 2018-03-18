@@ -1,4 +1,7 @@
 <?php
+require_once("Character.php");
+require_once("Shop.php");
+require_once("Item.php");
 
 class Item {
     private $ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
@@ -72,11 +75,11 @@ class Item {
         if($this->Stats["HP"] > 0)
             $price += $this->Stats["HP"] * 30;
         if($this->Stats["Mana"] > 0)
-        $price += $this->Stats["Mana"] * 30;
+            $price += $this->Stats["Mana"] * 30;
         if($this->Stats["Attack"] > 0)
-        $price += $this->Stats["Attack"] * 30;
+            $price += $this->Stats["Attack"] * 30;
         if($this->Stats["Defense"] > 0)
-        $price += $this->Stats["Defense"] * 30;
+            $price += $this->Stats["Defense"] * 30;
     
         return $price;
     }
@@ -87,11 +90,11 @@ class Item {
         if($this->Stats["HP"] > 0)
             $price += $this->Stats["HP"] * 20;
         if($this->Stats["Mana"] > 0)
-        $price += $this->Stats["Mana"] * 15;
+            $price += $this->Stats["Mana"] * 15;
         if($this->Stats["Attack"] > 0)
-        $price += $this->Stats["Attack"] * 20;
+            $price += $this->Stats["Attack"] * 20;
         if($this->Stats["Defense"] > 0)
-        $price += $this->Stats["Defense"] * 35;
+            $price += $this->Stats["Defense"] * 35;
     
         return $price;
     }
