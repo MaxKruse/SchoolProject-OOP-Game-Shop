@@ -60,14 +60,7 @@ class Character {
     public function equipItem(Item $item){
         $this->Equipped[$item->myType] = $item;
     }
-
-    public function buyItem(Item $item){
-
-    }
-
-    public function sellItem(Item $item){
-
-    }
+    
 }
 
 ?>

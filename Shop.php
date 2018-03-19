@@ -34,15 +34,35 @@ class Shop {
         }
     }
 
-    function buyItem(Item $item){
-        
+    function buyItem(Item $item, Character $char){
+        $playerMoney = convertGSCtoCurrency($char->Currency);
+
+        if($playerMoney > $item->getBuyValue()){
+            $playerMoney -= $item->getBuyValue();
+            $char->Items = array_merge($char->Items, array($item));
+        }
+        else {
+            print "\nNot enough money to buy this";
+        }
+
+        $char->Currency = convertGSCtoCurrency($playerMoney);
     }
         
-    function sellItem(Item $item){
-        
+    function sellItem(Item $item, Character $char){
+        $playerMoney = convertGSCtoCurrency($char->Currency);
+
+        for($i = 0; $i < count($char->Items); $i++){
+            if($char->Items[$i] == $item){
+                unset($char->Items[$i]);
+                $playerMoney += $item->getSellValue();
+            }
+        }
+
+
+        $char->Currency = convertGSCtoCurrency($playerMoney);        
     }
 
-    function convertGSCtoCurrency($arr){
+    static function convertGSCtoCurrency($arr){
         
         $gold = $arr["Gold"];
 
@@ -57,7 +77,7 @@ class Shop {
         return $money;
     }
 
-    function convertCurrencyToGSC($money){
+    static function convertCurrencyToGSC($money){
         
         $arr = array();
 
