@@ -60,6 +60,27 @@ class Character {
     public function equipItem(Item $item){
         $this->Equipped[$item->myType] = $item;
     }
+
+    public function listItems(){
+
+        print "\n\n\t\tAvailable items\n\n";
+
+        for($i = 0; $i < count($this->Items); $i++){
+            $dis = $i + 1; 
+            print "Nr " . $dis . ": ";
+            print $this->Items[$i]->Stats["Name"] . "\n";
+            if($this->Items[$i]->Stats["HP"] > 0)
+            print "HP: " . $this->Items[$i]->Stats["HP"] . "\n";
+            if($this->Items[$i]->Stats["Mana"] > 0)
+            print "Mana: " . $this->Items[$i]->Stats["Mana"] . "\n";
+            if($this->Items[$i]->Stats["Attack"] > 0)
+            print "Attack: " . $this->Items[$i]->Stats["Attack"] . "\n";
+            if($this->Items[$i]->Stats["Defense"] > 0)
+            print "Defense:" . $this->Items[$i]->Stats["Defense"] . "\n";
+
+            print "\n";
+        }
+    }
     
 }
 
