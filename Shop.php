@@ -44,6 +44,8 @@ class Shop {
         else {
             print "\nNot enough money to buy this";
         }
+        $index = array_search(Item, $this->Items);
+        unset($this->Items[$index]);
 
         $char->Currency = convertGSCtoCurrency($playerMoney);
     }

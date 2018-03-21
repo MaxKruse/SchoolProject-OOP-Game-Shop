@@ -12,18 +12,18 @@ class Character {
     
 
     function __construct(){
-        $this->Currency["gold"] = rand(5, 10);
-        $this->Currency["silver"] = rand(25, 50);
-        $this->Currency["copper"] = rand(1, 75);
+        $this->Currency["Gold"] = rand(5, 10);
+        $this->Currency["Silver"] = rand(25, 50);
+        $this->Currency["Copper"] = rand(1, 75);
 
         $this->newStats();
 
         $this->Equipped = array(
-            "Weapon" => null, 
-            "Helmet" => null, 
-            "Chest" => null, 
-            "Pants" => null, 
-            "Boots" => null
+            "Weapon" => NULL, 
+            "Helmet" => NULL, 
+            "Chest" => NULL, 
+            "Pants" => NULL, 
+            "Boots" => NULL
         );
 
         $this->ItemTypes = array("Weapon","Helmet","Chest","Pants","Boots");
