@@ -63,11 +63,11 @@ class Character {
 
     public function listItems(){
 
-        print "\n\n\t\tAvailable items\n\n";
+        print "\n\n\n\n\n\n\t\tAvailable items\n\n\n\n\n\n\n\n";
 
         for($i = 0; $i < count($this->Items); $i++){
             $dis = $i + 1; 
-            print "Nr " . $dis . ": ";
+            print "No " . $dis . ": ";
             print $this->Items[$i]->Stats["Name"] . "\n";
             if($this->Items[$i]->Stats["HP"] > 0)
             print "HP: " . $this->Items[$i]->Stats["HP"] . "\n";

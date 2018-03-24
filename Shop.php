@@ -19,7 +19,7 @@ class Shop {
 
         for($i = 0; $i < count($this->Items); $i++){
             $dis = $i + 1; 
-            print "Nr " . $dis . ": ";
+            print "No " . $dis . ": ";
             print $this->Items[$i]->Stats["Name"] . "\n";
             if($this->Items[$i]->Stats["HP"] > 0)
             print "HP: " . $this->Items[$i]->Stats["HP"] . "\n";
