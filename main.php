@@ -18,13 +18,13 @@ $shop = new Shop();
 while(true){
 
     if($AREA_CURRENT == $AREA_INVENTORY){
-        $input = menu("Currently in \$INVENTORY\$","List all items","Equip an item","Go to Shop","Go to Stats","Exit");
+        $input = menu("Currently in \$INVENTORY\$","List all items","Equip an item", "Equip the best item with a specific stat" , "Go to Shop","Go to Stats","Exit");
     }
     else if($AREA_CURRENT == $AREA_SHOP){
         $input = menu("Currently in \$SHOP\$","");
     }
     else if($AREA_CURRENT == $AREA_STATS){
-        $input = menu("Currently in \$STATS\$","");
+        $input = menu("Currently in \$STATS\$","Show Stats", "Show detailed Stats", "Go To Inventory", "Go to Shop");
     }
     
     handleInput($input);    
@@ -38,12 +38,12 @@ function menu(string $main, string ... $args){
         print "MENU(): INVALID ARGS";
         die;
     }
-    print "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    print "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     print $main . "\n\n\n";
 
     $i = 1;
     foreach($args as $line){
-        print "[$i] " . $line . "\n";
+        print "[$i] $line\n";
         $i++;
     }
     print "\n";
@@ -56,7 +56,7 @@ function menu(string $main, string ... $args){
 }
 
 
-//Generic input-Handler
+// input-Handler
 function handleInput($var){
     global $AREA_CURRENT, $AREA_INVENTORY, $AREA_SHOP, $AREA_STATS;
     global $character, $shop;
@@ -77,25 +77,32 @@ function handleInput($var){
             $character->listItems();
             print "Index: ";
             $n = trim(fgets(STDIN));
-            $character->equipItem($character->Items[$n]);
+            $character->equipItem($n-1);
             break;
 
         case 3:
-            $AREA_CURRENT = $AREA_SHOP;
+            print "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            print "What stat do you want? [HP, Mana, Attack, Defense]\n\n";
+            print "Index: ";
+            $n = trim(fgets(STDIN));
+
+            $character->equipWithHighestStat(strtolower($n));
             break;
 
         case 4:
-            $AREA_CURRENT = $AREA_STATS;
+            $AREA_CURRENT = $AREA_SHOP;
             break;
 
         case 5:
+            $AREA_CURRENT = $AREA_STATS;
+            break;
+
+        case 6:
             exit("Exited in \$INVENTORY\$");
     
         default: 
             print "Nothing is happening.\n";
             break;
-
-        break;
         }
     }
 
@@ -113,8 +120,6 @@ function handleInput($var){
         case 7:
             $AREA_CURRENT = $AREA_STATS;
             break;
-
-        break;
         }
     }
         
@@ -126,15 +131,21 @@ function handleInput($var){
             print "Nothing is happening.\n";
             break;
 
-        case 6:
-            $AREA_CURRENT = $AREA_SHOP;
+        case 1:
+            $character->showStats();
             break;
 
-        case 7:
+        case 2:
+            $character->showStats(true);
+            break;
+
+        case 3:
             $AREA_CURRENT = $AREA_INVENTORY;
             break;
 
-        break;
+        case 74:
+            $AREA_CURRENT = $AREA_SHOP;
+            break;
         }
     }
 }

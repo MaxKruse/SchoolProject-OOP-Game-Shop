@@ -19,7 +19,9 @@ class Shop {
 
         for($i = 0; $i < count($this->Items); $i++){
             $dis = $i + 1; 
-            print "No " . $dis . ": ";
+            print "No $dis: ";
+
+            //Only show Stats > 0
             print $this->Items[$i]->Stats["Name"] . "\n";
             if($this->Items[$i]->Stats["HP"] > 0)
             print "HP: " . $this->Items[$i]->Stats["HP"] . "\n";
@@ -34,7 +36,7 @@ class Shop {
         }
     }
 
-    function buyItem(Item $item, Character $char){
+    function buyItem(Character $char, Item $item){
         $playerMoney = convertGSCtoCurrency($char->Currency);
 
         if($playerMoney > $item->getBuyValue()){
@@ -42,15 +44,16 @@ class Shop {
             $char->Items = array_merge($char->Items, array($item));
         }
         else {
-            print "\nNot enough money to buy this";
+            print "\nNot enough money to buy this.\n";
         }
-        $index = array_search(Item, $this->Items);
+
+        $index = array_search($item, $this->Items);
         unset($this->Items[$index]);
 
         $char->Currency = convertGSCtoCurrency($playerMoney);
     }
         
-    function sellItem(Item $item, Character $char){
+    function sellItem(Character $char, Item $item){
         $playerMoney = convertGSCtoCurrency($char->Currency);
 
         for($i = 0; $i < count($char->Items); $i++){

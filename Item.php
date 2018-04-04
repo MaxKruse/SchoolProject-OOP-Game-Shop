@@ -38,7 +38,7 @@ class Item {
         switch($type){
             case "Weapon":
             $this->Stats["Attack"] = 10 + rand(5,10);
-            $this->Stats["HP"] = 10 + rand(5,10);
+            $this->Stats["Mana"] = 10 + rand(5,10);
             $this->Stats["Name"] = "Mighty " . $type;
                 break;
             case "Helmet":
@@ -47,6 +47,7 @@ class Item {
             $this->Stats["Name"] = "Strong " . $type;
                 break;
             case "Chest":
+            $this->Stats["Attack"] = 5 + rand(5,10);
             $this->Stats["HP"] = 20 + rand(5,10);
             $this->Stats["Defense"] = 15 + rand(5,10);
             $this->Stats["Name"] = "Sturdy " . $type;
