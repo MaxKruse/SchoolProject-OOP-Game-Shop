@@ -74,13 +74,13 @@ class Item {
         $price = 0;
 
         if($this->Stats["HP"] > 0)
-            $price += $this->Stats["HP"] * 30;
+            $price += $this->Stats["HP"] * 300;
         if($this->Stats["Mana"] > 0)
-            $price += $this->Stats["Mana"] * 30;
+            $price += $this->Stats["Mana"] * 176;
         if($this->Stats["Attack"] > 0)
-            $price += $this->Stats["Attack"] * 30;
+            $price += $this->Stats["Attack"] * 3457;
         if($this->Stats["Defense"] > 0)
-            $price += $this->Stats["Defense"] * 30;
+            $price += $this->Stats["Defense"] * 234;
     
         return $price;
     }
@@ -89,13 +89,13 @@ class Item {
         $price = 0;
 
         if($this->Stats["HP"] > 0)
-            $price += $this->Stats["HP"] * 20;
+            $price += $this->Stats["HP"] * 234;
         if($this->Stats["Mana"] > 0)
-            $price += $this->Stats["Mana"] * 15;
+            $price += $this->Stats["Mana"] * 235;
         if($this->Stats["Attack"] > 0)
-            $price += $this->Stats["Attack"] * 20;
+            $price += $this->Stats["Attack"] * 785;
         if($this->Stats["Defense"] > 0)
-            $price += $this->Stats["Defense"] * 35;
+            $price += $this->Stats["Defense"] * 532;
     
         return $price;
     }

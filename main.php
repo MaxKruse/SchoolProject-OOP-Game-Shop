@@ -21,7 +21,7 @@ while(true){
         $input = menu("Currently in \$INVENTORY\$","List all items","Equip an item", "Equip the best item with a specific stat" , "Go to Shop","Go to Stats","Exit");
     }
     else if($AREA_CURRENT == $AREA_SHOP){
-        $input = menu("Currently in \$SHOP\$","");
+        $input = menu("Currently in \$SHOP\$","Buy Items", "Sell Items", "Go To Inventory", "Go to Stats");
     }
     else if($AREA_CURRENT == $AREA_STATS){
         $input = menu("Currently in \$STATS\$","Show Stats", "Show detailed Stats", "Go To Inventory", "Go to Shop");
@@ -113,11 +113,25 @@ function handleInput($var){
             print "Nothing is happening.\n";
             break;
 
-        case 6:
+        case 1:
+            $shop->listItems();
+            print "Index: ";
+            $n = trim(fgets(STDIN));
+            $shop->buyItem($character, $shop->Items[$n-1]);
+            break;
+
+        case 2:
+            $character->listItems();
+            print "Index: ";
+            $n = trim(fgets(STDIN));
+            $shop->sellItem($character, $shop->Items[$n-1]);
+            break;
+
+        case 3:
             $AREA_CURRENT = $AREA_INVENTORY;
             break;
 
-        case 7:
+        case 4:
             $AREA_CURRENT = $AREA_STATS;
             break;
         }
